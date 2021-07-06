@@ -13,4 +13,3 @@ There is some cases not implemented, as nested strings, but is a working in prog
 To use this syntax you need to download this folder in VSCode extensions folder:
 - Linux and MAC: `$HOME/.vscode/extensions/`
 - Windows: `%USERPROFILE%\.vscode\extensions`
-# csml-syntax-highlighting

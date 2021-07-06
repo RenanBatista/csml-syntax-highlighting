@@ -1,0 +1,173 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "csml",
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    { "include": "#expression" },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#entity"
+    },
+    {
+      "include": "#support"
+    },
+    {
+      "include": "#constant"
+    },
+    {
+      "include": "#storage"
+    }
+  ],
+  "repository": {
+    "string-interpolated":  { 
+      "beginCaptures": {},
+      "patterns": [
+        {"name":"string.interpolated.csml", "match": "(\\{\\{.*\\}\\})"}
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.csml",
+          "match": "\\b(if|else|return|break|continue|foreach|in)\\b"
+        },
+        {
+          "comment": "",
+          "name": "keyword.operator.csml",
+          "match": "\\b(as|\\-|\\+|\\*|\\/|\\%)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "include": "#single-string"
+        },
+        {
+          "include": "#double-string"
+        }
+      ]
+    },
+    "single-string": {
+      "name": "string.quoted.single.csml",
+      "begin": "(\\')",
+      "end": "(\\')",
+      "patterns": [
+        {
+          "name": "constant.character.escape.csml",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "double-string": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.csml",
+          "match": "([\"])((?:|(?:(?!\\1)).)*)(\\1)"
+        },
+        {"include": "#string-interpolated"}
+      ]
+    },
+    "entity": {
+      "patterns": [
+        { "name": "entity.name.function.csml", "match": "(?<=fn)(s*.+?)(?=\\()" },
+        { "name": "entity.name.function.csml", "match": "(?<!\")\\w+\\:\\s*" }
+      ]
+    },
+    "constant": {
+      "patterns": [
+        {
+          "comment": "",
+          "name": "constant.numeric.csml",
+          "match": "\\b\\(\\d+|\\d\\.f\\)\\b"
+        },
+        {
+          "comment": "",
+          "name": "constant.language.csml",
+          "match": "\\b(true|false|NULL)\\b"
+        }
+      ]
+    },
+    "comment": {
+      "patterns": [
+        {
+          "comment": "",
+          "name": "comment.line.double-slash",
+          "match": "(\\/\\/.*$)"
+        },
+        {
+          "comment": "",
+          "name": "comment.block",
+          "begin": "(^.*\\/\\*)",
+          "end": "(\\*\\/)"
+        }
+      ]
+    },
+    "storage": {
+      "patterns": [
+        {
+          "comment": "",
+          "name": "storage.type.csml",
+          "match": "\\b(remember)\\b"
+        }
+      ]
+    },
+    "support": {
+      "patterns": [
+        {
+          "comment": "",
+          "name": "support.class.csml",
+          "match": "\\b(Wait|Text|Typing|Url|Image|Video|Audio|Question|Carousel)(?=\\()"
+        },
+        {
+          "comment": "",
+          "name": "support.function.csml",
+          "match": "\\b(hold|say|do|goto|fn)\\b"
+        },
+        {
+          "comment": "",
+          "name": "support.function.csml",
+          "match": "\\b(\\w*?)(?=\\(.*\\))"
+        },
+        {
+          "comment": "",
+          "name": "variable.other.csml",
+          "match": "\\b(import|from)\\b"
+        }
+      ]
+    },
+
+    "variable": {
+      "patterns": [
+        {
+          "comment": "",
+          "name": "variable.language.csml",
+          "match": "\\b(import|from)\\b"
+        }
+      ]
+    },
+    "expression": {
+      "patterns": [{ "include": "#paren-expression" }]
+    },
+    "paren-expression": {
+      "begin": "\\(",
+      "end": "\\)",
+      "beginCaptures": {
+        "0": { "name": "punctuation.paren.open" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.paren.close" }
+      },
+      "name": "expression.group",
+      "patterns": [{ "include": "#expression" }]
+    }
+  },
+  "scopeName": "source.csml"
+}
