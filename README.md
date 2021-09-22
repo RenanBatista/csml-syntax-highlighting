@@ -10,6 +10,6 @@ There is some cases not implemented, as nested strings, but is a working in prog
 
 ## Installing 
 
-To use this syntax you need to download this folder in VSCode extensions folder:
+To use this syntax you need to download this repo in a subfolder inside VSCode extensions folder:
 - Linux and MAC: `$HOME/.vscode/extensions/`
 - Windows: `%USERPROFILE%\.vscode\extensions`
